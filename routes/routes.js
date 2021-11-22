@@ -1,5 +1,8 @@
 const express = require("express");
+const mongodb = require("mongodb");
+
 const router = express.Router();
+
 const imageUpload = require("./controllers/imageUpload");
 const persistImage = require("./controllers/persistImage");
 const retrieveImage = require("./controllers/retrieveImage");
