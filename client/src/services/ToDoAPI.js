@@ -2,6 +2,6 @@ import API from "@/services/API";
 
 export default {
   getToDos() {
-    return API().get("");
+    return API().get("/players");
   }
 };
