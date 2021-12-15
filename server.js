@@ -1,17 +1,22 @@
+require("dotenv").config();
 const express = require("express");
-const serveStatic = require("serve-static");
+const server = express();
+const cors = require("cors");
 const path = require("path");
+const serveStatic = require("serve-static");
 
-const app = express();
+const mongoose = require("mongoose");
 
-//here we are configuring dist to serve app files
-app.use("/", serveStatic(path.join(__dirname, "/dist")));
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", (error) => console.log(error));
+db.once("open", () => console.log("Connected to database!"));
 
-// this * route is to serve project on different page routes except root `/`
-app.get(/.*/, function(req, res) {
-	res.sendFile(path.join(__dirname, "/dist/index.html"));
-});
+server.use(express.json());
+server.use(cors());
+server.use(serveStatic(__dirname + "/client/dist"));
 
-const port = process.env.PORT || 3000;
-app.listen(port);
-console.log(`app is listening on port: ${port}`);
+const router = require("./players");
+server.use("/", router);
+
+server.listen(process.env.PORT || 8081), () => console.log("Server started!"); // client is already running on 8080
