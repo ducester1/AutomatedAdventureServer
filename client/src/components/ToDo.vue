@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+    <p> {{todo}} </P>
     <ul>
       <li v-for='todo in todos'>
         <span>{{todo}}</span>
