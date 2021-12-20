@@ -3,7 +3,7 @@
     <v-layout>
       <v-spacer />
       <v-card-title>
-        {{ todos[0].playerName }}
+        {{ players[0].playerName }}
       </v-card-title>
       <v-spacer />
     </v-layout>
@@ -21,16 +21,17 @@
       </v-container>
       <v-img :src="background"></v-img>
     </div>
+    <p>total time botted:</p>
   </v-card>
 </template>
 
 <script>
-import ToDoAPI from "@/services/ToDoAPI.js";
+import PlayerAPI from "@/services/PlayerAPI.js";
 export default {
   data() {
     return {
       background: { src: require("../assets/Skills_tab.png") },
-      todos: [
+      players: [
         {
           _id: { $oid: "618d32a7e8d9cd0fd9fdbb51" },
           playerName: "automatedAdventure1",
@@ -46,19 +47,19 @@ export default {
     };
   },
   mounted() {
-    this.loadTodos();
+    this.loadPlayers();
   },
   methods: {
-    async loadTodos() {
-      const response = await ToDoAPI.getToDos();
-      this.todos = response.data;
+    async loadPlayers() {
+      const response = await PlayerAPI.getToDos();
+      this.players = response.data;
     },
     getSkill(n) {
       switch (n) {
         case 1:
-          return this.todos[0].stats.attack.$numberInt;
+          return this.players[0].stats.attack.$numberInt;
         case 2:
-          return this.todos[0].stats.health.$numberInt;
+          return this.players[0].stats.health.$numberInt;
         default:
           return 0;
       }
@@ -78,7 +79,7 @@ export default {
 }
 
 .skills-container {
-  padding-top: 17px;
+  padding-top: 18px;
   padding-left: 34px;
 }
 
