@@ -38,7 +38,7 @@ export default {
           stats: {
             attack: { $numberInt: "1" },
             defense: { $numberInt: "2" },
-            health: { $numberInt: "11" },
+            health: { $numberInt: "10" },
             strength: { $numberInt: "7" },
           },
           banned: false,
@@ -46,20 +46,25 @@ export default {
       ],
     };
   },
-  mounted() {
+  created() {
     this.loadPlayers();
   },
   methods: {
     async loadPlayers() {
-      const response = await PlayerAPI.getToDos();
+      let response = await PlayerAPI.getPlayers();
       this.players = response.data;
     },
     getSkill(n) {
+      const stats = JSON.parse(JSON.stringify(this.players))[0].stats;
       switch (n) {
         case 1:
-          return this.players[0].stats.attack.$numberInt;
+          return stats.attack;
         case 2:
-          return this.players[0].stats.health.$numberInt;
+          return stats.health;
+        case 4:
+          return stats.strength;
+        case 7:
+          return stats.defense;
         default:
           return 0;
       }
@@ -70,12 +75,12 @@ export default {
 
 <style scoped>
 .rounded-card {
-  border-radius: 25px;
+  border-radius: 25px !important;
 }
 
 .title {
-  color: #f3f304;
-  background-color: #504937;
+  color: #f3f304 !important;
+  background-color: #504937 !important;
 }
 
 .skills-container {
@@ -96,7 +101,7 @@ export default {
   width: 40px !important;
   padding: 0px !important;
   min-width: 0px !important;
-  color: #f3f304;
+  color: #f3f304 !important;
   background-color: #504937 !important;
 }
 .custom-btn::before {
