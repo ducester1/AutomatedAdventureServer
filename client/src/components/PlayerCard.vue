@@ -3,7 +3,7 @@
     <v-layout>
       <v-spacer />
       <v-card-title>
-        {{ players[0].playerName }}
+        {{ player.playerName }}
       </v-card-title>
       <v-spacer />
     </v-layout>
@@ -28,26 +28,16 @@
 <script>
 import PlayerAPI from "@/services/PlayerAPI.js";
 export default {
+  props: ["player"],
   data() {
     return {
       background: { src: require("../assets/Skills_tab.png") },
-      players: [
-        {
-          _id: { $oid: "618d32a7e8d9cd0fd9fdbb51" },
-          playerName: "automatedAdventure1",
-          stats: {
-            attack: { $numberInt: "1" },
-            defense: { $numberInt: "2" },
-            health: { $numberInt: "10" },
-            strength: { $numberInt: "7" },
-          },
-          banned: false,
-        },
-      ],
+      player: [],
+      //players: [],
     };
   },
   created() {
-    this.loadPlayers();
+    //this.loadPlayers();
   },
   methods: {
     async loadPlayers() {
@@ -55,16 +45,56 @@ export default {
       this.players = response.data;
     },
     getSkill(n) {
-      const stats = JSON.parse(JSON.stringify(this.players))[0].stats;
+      const levels = JSON.parse(JSON.stringify(this.player)).levels;
       switch (n) {
         case 1:
-          return stats.attack;
+          return levels.attack;
         case 2:
-          return stats.health;
+          return levels.hitpoints;
+        case 3:
+          return levels.mining;
         case 4:
-          return stats.strength;
+          return levels.strength;
+        case 5:
+          return levels.agility;
+        case 6:
+          return levels.smithing;
         case 7:
-          return stats.defense;
+          return levels.defense;
+        case 8:
+          return levels.herblore;
+        case 9:
+          return levels.fishing;
+        case 10:
+          return levels.ranged;
+        case 11:
+          return levels.thieving;
+        case 12:
+          return levels.cooking;
+        case 13:
+          return levels.prayer;
+        case 14:
+          return levels.crafting;
+        case 15:
+          return levels.firemaking;
+        case 16:
+          return levels.magic;
+        case 17:
+          return levels.fletching;
+        case 18:
+          return levels.woodcutting;
+        case 19:
+          return levels.runecrafting;
+        case 20:
+          return levels.slayer;
+        case 21:
+          return levels.farming;
+        case 22:
+          return levels.construction;
+        case 23:
+          return levels.hunter;
+        case 24:
+          return levels.total;
         default:
           return 0;
       }
