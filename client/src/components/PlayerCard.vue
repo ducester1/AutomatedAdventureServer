@@ -40,10 +40,13 @@ export default {
   methods: {
     async loadPlayers() {
       let response = await PlayerAPI.getPlayers();
+      console.log(this.response);
       this.players = response.data;
+      console.log(this.players);
     },
     getSkill(n) {
       const levels = JSON.parse(JSON.stringify(this.player)).levels;
+      console.log(levels);
       switch (n) {
         case 1:
           return levels.attack;
