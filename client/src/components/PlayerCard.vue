@@ -44,6 +44,7 @@ export default {
     },
     getSkill(n) {
       const levels = JSON.parse(JSON.stringify(this.player)).levels;
+      console.log(levels);
       switch (n) {
         case 1:
           return levels.attack;
