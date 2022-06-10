@@ -22,6 +22,8 @@
       <v-img :src="background"></v-img>
     </div>
     <p>total time botted:</p>
+    <p>woodcutting:</p>
+    <p>gathered 69 logs</p>
   </v-card>
 </template>
 
@@ -33,11 +35,7 @@ export default {
     return {
       background: { src: require("../assets/Skills_tab.png") },
       player: [],
-      //players: [],
     };
-  },
-  created() {
-    //this.loadPlayers();
   },
   methods: {
     async loadPlayers() {

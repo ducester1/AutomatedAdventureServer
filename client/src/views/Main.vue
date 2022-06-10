@@ -4,7 +4,6 @@
       <v-row :align="centered" style="height: 150px">
         <v-col cols="4" v-for="p in players" :key="p.playerName">
           <player-card :player="p" />
-          <!-- <player :player="p" /> -->
         </v-col>
       </v-row>
     </v-container>
