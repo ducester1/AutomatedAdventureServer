@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node server.js",
-		"build": "cd ./client && npm install sass webpack --legacy-peer-deps && npm run build"
+		"build": "cd ./client && npm install shelljs --save && npm install sass webpack --legacy-peer-deps && npm run build"
 	},
 	"author": "",
 	"license": "ISC",
