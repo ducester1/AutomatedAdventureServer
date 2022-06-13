@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node server.js",
-		"build": "npm run build --prefix client",
+		"build": "npm install --prefix client && npm run build --prefix client",
 		"test": "npm run build --prefix client && node server.js"
 	},
 	"author": "",
@@ -16,8 +16,6 @@
 		"express": "^4.17.1",
 		"mongodb": "^4.2.2",
 		"mongoose": "^6.1.2",
-		"nodemon": "^2.0.15",
-		"shelljs": "^0.7.8",
-		"ora": "^1.2.0"
+		"nodemon": "^2.0.15"
 	}
 }
